@@ -22,6 +22,7 @@ const showModalImg = () => {
   gallery.captionDelay = 250;
   gallery.on("show.simplelightbox");
 };
+showModalImg();
 
 const handlerClickGalleryByImage = (e) => {
   e.preventDefault();
@@ -30,7 +31,6 @@ const handlerClickGalleryByImage = (e) => {
     return;
   }
   urlOriginalImage = e.target.dataset.source;
-  showModalImg();
 };
 
 wraperGallery.addEventListener("click", handlerClickGalleryByImage);

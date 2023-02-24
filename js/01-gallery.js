@@ -16,7 +16,6 @@ const handlerKeyEsc = (e) => {
   }
   if (isEscape) {
     instance.close();
-    window.removeEventListener("keydown", handlerKeyEsc);
   }
 };
 
@@ -34,11 +33,15 @@ wraperGallery.insertAdjacentHTML("afterbegin", listGallery);
 
 const showModalImg = () => {
   instance = basicLightbox.create(
-    `<img src=${urlOriginalImage} width="1200" height="800">`
+    `<img src=${urlOriginalImage} width="1200" height="800">`,
+    {
+      onShow: (instance) => document.addEventListener("keydown", handlerKeyEsc),
+      onClose: (instance) =>
+        document.removeEventListener("keydown", handlerKeyEsc),
+    }
   );
 
   instance.show();
-  window.addEventListener("keydown", handlerKeyEsc);
 };
 
 const handlerClickGalleryByImage = (e) => {
